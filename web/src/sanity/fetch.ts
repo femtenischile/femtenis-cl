@@ -8,8 +8,9 @@ import {apiVersion, dataset, projectId} from './env'
 /** Sin Project ID el sitio usa los datos de ejemplo de seed/demo.ndjson (modo demo). */
 export {isDemo} from './env'
 
+// useCdn: false para que cada build lea lo recién publicado (el CDN de la API puede devolver datos de hace unos minutos)
 const client = projectId
-  ? createClient({projectId, dataset, apiVersion, useCdn: true, perspective: 'published'})
+  ? createClient({projectId, dataset, apiVersion, useCdn: false, perspective: 'published'})
   : null
 
 let demoDocs: unknown[] | null = null
