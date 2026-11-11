@@ -27,6 +27,19 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   return (
     <html lang="es-CL" className={`${anton.variable} ${inter.variable} ${mono.variable}`}>
       <body className="site">
+        {/* Le dice a Google el nombre del sitio y sus variantes (femtenis, FemTenisChile) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'femtenis.cl',
+              alternateName: ['femtenis', 'FemTenisChile', 'Fem Tenis Chile'],
+              url: `${SITE_URL}/`,
+            }),
+          }}
+        />
         <SiteHeader instagram={sitio.instagram} />
         <main id="contenido">{children}</main>
         <SiteFooter sitio={sitio} />
