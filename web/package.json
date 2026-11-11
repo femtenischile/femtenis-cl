@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "rm -rf .next/cache && next build",
     "preview": "next build && wrangler dev",
     "deploy": "next build && wrangler deploy",
     "typecheck": "tsc --noEmit"
