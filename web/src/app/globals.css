@@ -302,3 +302,17 @@ ul.plain,ol.plain{list-style:none;padding:0}
 .prose ul,.prose ol{padding-left:24px;display:flex;flex-direction:column;gap:8px}
 .prose a{text-decoration:underline;text-underline-offset:3px}
 .prose figure img{border-radius:var(--r-lg)}
+
+/* Carrusel (Chilenas en el circuito WTA) */
+.carrusel__controles{display:flex;gap:8px}
+.carrusel__btn{width:44px;height:44px;border-radius:9999px;border:1px solid var(--purple-700);background:transparent;color:var(--snow-50);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background-color 150ms,opacity 150ms}
+.carrusel__btn:hover:not(:disabled){background:var(--purple-800)}
+.carrusel__btn--siguiente{background:var(--lime-400);border-color:var(--lime-400);color:var(--purple-900)}
+.carrusel__btn--siguiente:hover:not(:disabled){background:var(--lime-500)}
+.carrusel__btn:disabled{opacity:.35;cursor:default}
+.carrusel__pista{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 72px) / 4);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding-bottom:4px}
+.carrusel__pista::-webkit-scrollbar{display:none}
+.carrusel__pista>li{scroll-snap-align:start}
+@media (max-width:1023px){.carrusel__pista{grid-auto-columns:calc((100% - 24px) / 2)}}
+@media (max-width:600px){.carrusel__pista{grid-auto-columns:80%}}
+@media (prefers-reduced-motion:reduce){.carrusel__pista{scroll-behavior:auto}}

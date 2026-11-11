@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import {Arrow} from '@/components/Arrow'
+import {Carrusel} from '@/components/Carrusel'
 import {NewsCard} from '@/components/Cards'
 import {Img} from '@/components/Img'
 import {StackedTournaments} from '@/components/Tournaments'
@@ -79,12 +80,15 @@ export default async function Inicio() {
       {carrusel.length ? (
         <section className="theme-dark section" aria-labelledby="h-wta">
           <div className="container stack">
-            <div className="section-head">
-              <h2 id="h-wta" className="display-md section-title">
-                Chilenas en el circuito WTA
-              </h2>
-            </div>
-            <ul className="plain grid-4">
+            <Carrusel
+              id="carrusel-wta"
+              etiqueta="Jugadoras"
+              titulo={
+                <h2 id="h-wta" className="display-md section-title">
+                  Chilenas en el circuito WTA
+                </h2>
+              }
+            >
               {carrusel.map((j) => (
                 <li key={j._id}>
                   <article className="player">
@@ -113,7 +117,7 @@ export default async function Inicio() {
                   </article>
                 </li>
               ))}
-            </ul>
+            </Carrusel>
           </div>
         </section>
       ) : null}
