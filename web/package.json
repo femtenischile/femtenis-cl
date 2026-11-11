@@ -1,0 +1,30 @@
+{
+  "name": "femtenis-web",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "preview": "next build && wrangler dev",
+    "deploy": "next build && wrangler deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.2.1",
+    "@sanity/client": "^7.0.0",
+    "@sanity/image-url": "^1.1.0",
+    "groq-js": "^1.14.0",
+    "next": "^15.3.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.14.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Worker solo de assets estáticos: no hay script, así que las visitas no consumen cuota de Workers.
+  "name": "femtenis-cl",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}

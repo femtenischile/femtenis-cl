@@ -1,0 +1,14 @@
+# Reconstruye el sitio cada lunes para que "En cancha esta semana" y el calendario
+# reflejen la fecha actual aunque nadie publique en Sanity.
+# Requiere el secreto CLOUDFLARE_DEPLOY_HOOK (URL del Deploy Hook de Workers Builds).
+name: Reconstrucción semanal
+on:
+  schedule:
+    - cron: '0 10 * * 1' # lunes 10:00 UTC (07:00 en Chile en horario de verano)
+  workflow_dispatch: {}
+jobs:
+  disparar-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Llamar al Deploy Hook de Cloudflare
+        run: curl -fsS -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"
