@@ -13,7 +13,7 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
     // Portada y Sitio son registros únicos: no se pueden crear desde "Nuevo documento"
-    templates: (templates) => templates.filter(({schemaType}) => !SINGLETONS.includes(schemaType)),
+    templates: (templates) => templates.filter(({schemaType}) => !SINGLETONS.includes(schemaType) && schemaType !== 'rankingSemanal'),
   },
   document: {
     actions: (actions, {schemaType}) =>

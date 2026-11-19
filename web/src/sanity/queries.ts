@@ -93,20 +93,31 @@ export function getPortada(): Promise<PortadaRaw> {
 }
 
 /** Ranking de singles de la semana más reciente, con el puesto de la semana anterior. */
+type RankingDoc = {semana: string; filas: (Omit<FilaRanking, 'semana' | 'anterior'> & {puestoAnterior?: number | null})[] | null}
+
 export function getRanking(): Promise<FilaRanking[]> {
-  return once('ranking', () =>
-    fetchData<FilaRanking[]>(
-      `*[_type == "rankingSemanal" && modalidad == "singles" &&
-         semana == *[_type == "rankingSemanal" && modalidad == "singles"] | order(semana desc)[0].semana]
-        | order(puesto asc){
-          puesto, puntos, semana,
+  return once('ranking', async () => {
+    // Las dos semanas más recientes: [0] la actual, [1] la anterior (para calcular la variación)
+    const docs = await fetchData<RankingDoc[]>(
+      `*[_type == "ranking" && modalidad == "singles" && defined(semana)] | order(semana desc)[0...2]{
+        semana,
+        filas[defined(jugadora._ref) && defined(puesto)]{
+          puesto, puntos, puestoAnterior,
           "jugadoraId": jugadora._ref,
-          "nombre": jugadora->nombre, "apellido": jugadora->apellido, "slug": jugadora->slug.current, "foto": jugadora->foto,
-          "anterior": *[_type == "rankingSemanal" && modalidad == "singles" && jugadora._ref == ^.jugadora._ref && semana < ^.semana]
-            | order(semana desc)[0].puesto
-        }`,
-    ),
-  )
+          "nombre": jugadora->nombre, "apellido": jugadora->apellido, "slug": jugadora->slug.current, "foto": jugadora->foto
+        }
+      }`,
+    )
+    const [actual, previa] = docs
+    if (!actual?.filas?.length) return []
+    return actual.filas
+      .map(({puestoAnterior, ...f}) => ({
+        ...f,
+        semana: actual.semana,
+        anterior: puestoAnterior ?? previa?.filas?.find((p) => p.jugadoraId === f.jugadoraId)?.puesto ?? null,
+      }))
+      .sort((a, b) => a.puesto - b.puesto)
+  })
 }
 
 /** Torneos que no han terminado, ordenados por fecha, con sus inscritas. */

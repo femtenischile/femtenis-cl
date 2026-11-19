@@ -1,5 +1,6 @@
 import {jugadora} from './jugadora'
 import {rankingSemanal} from './rankingSemanal'
+import {ranking} from './ranking'
 import {torneo} from './torneo'
 import {participacion} from './participacion'
 import {partido} from './partido'
@@ -15,7 +16,8 @@ export const schemaTypes = [
   imagenConCredito,
   cuerpo,
   jugadora,
-  rankingSemanal,
+  ranking,
+  rankingSemanal, // formato antiguo: ya no aparece en el menú
   torneo,
   participacion,
   partido,

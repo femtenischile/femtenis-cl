@@ -12,7 +12,11 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('autora').title('Autoras'),
       S.divider(),
       S.documentTypeListItem('jugadora').title('Jugadoras'),
-      S.documentTypeListItem('rankingSemanal').title('Ranking semanal'),
+      S.listItem()
+        .title('Ranking semanal')
+        .id('ranking')
+        .schemaType('ranking')
+        .child(S.documentTypeList('ranking').title('Ranking semanal').defaultOrdering([{field: 'semana', direction: 'desc'}])),
       S.documentTypeListItem('torneo').title('Torneos'),
       S.documentTypeListItem('participacion').title('Participaciones'),
       S.documentTypeListItem('partido').title('Partidos'),

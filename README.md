@@ -163,7 +163,7 @@ GitHub → tu repositorio → **Settings** → **Secrets and variables** → **A
 
 - **Publicar una nota:** Studio → Artículos → crear → completar → **Publish**. El sitio se actualiza solo.
 - **Portada:** Studio → Portada. Elige el artículo destacado, el perfil del mes, las jugadoras del carrusel y el partido destacado. Si dejas algo vacío, el sitio usa el contenido más reciente.
-- **Ranking:** cada lunes, crea una fila de **Ranking semanal** por jugadora. La variación se calcula sola comparando con la semana anterior.
+- **Ranking:** cada lunes, en **Ranking semanal**, abre el ranking de la semana anterior → menú **⋯** (arriba a la derecha) → **Duplicar**. En la copia, cambia la fecha y los puestos y puntos de cada jugadora, y presiona **Publish**. No edites el ranking anterior: el sitio lo usa para calcular la variación semanal.
 - **Torneos y partidos:** crea el torneo, sus **Participaciones** (quién está inscrita) y los **Partidos** cuando se publique el cuadro.
 
 ## Notas técnicas
