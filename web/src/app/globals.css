@@ -361,3 +361,13 @@ ul.plain,ol.plain{list-style:none;padding:0}
 /* Variación semanal de la N.º 1 (junto a puesto y puntos) */
 .stat__variacion{display:flex;align-items:center;min-height:48px;margin-top:8px}
 .stat__variacion .delta{font-size:16px;padding:8px 16px}
+.leader__stats{display:flex;gap:40px;flex-wrap:wrap}
+/* En celular: puesto, puntos y variación en una sola fila */
+@media (max-width:600px){
+  .leader{padding:24px 20px}
+  .leader__stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;column-gap:20px;width:100%}
+  .leader__stats .stat__value{font-size:48px}
+  .leader__semanal{display:none}
+  .stat__variacion{min-height:48px;margin-top:4px}
+  .stat__variacion .delta{font-size:14px;padding:6px 12px}
+}

@@ -25,7 +25,7 @@ export function RankingBox({filas}: {filas: FilaRanking[]}) {
             <p className="small on-dark-muted">Chile · Singles</p>
           </div>
         </div>
-        <dl style={{display: 'flex', gap: 40, flexWrap: 'wrap'}}>
+        <dl className="leader__stats">
           <div className="stat">
             <dt className="overline on-dark-muted">Puesto WTA</dt>
             <dd className="stat__value stat__value--accent">{lider.puesto}</dd>
@@ -37,7 +37,9 @@ export function RankingBox({filas}: {filas: FilaRanking[]}) {
             </div>
           ) : null}
           <div className="stat">
-            <dt className="overline on-dark-muted">Variación semanal</dt>
+            <dt className="overline on-dark-muted">
+              Variación<span className="leader__semanal"> semanal</span>
+            </dt>
             <dd className="stat__variacion">
               <Variacion f={lider} />
             </dd>
