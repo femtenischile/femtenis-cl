@@ -13,7 +13,7 @@ export function SiteHeader({instagram}: {instagram?: string}) {
         <div className="container site-header__inner">
           <Link className="site-header__logo" href="/">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-light.svg" alt="femtenis.cl, ir al inicio" width={147} height={28} />
+            <img src="/logo-light.png" alt="femtenis.cl, ir al inicio" width={158} height={28} />
           </Link>
           <NavLinks instagram={instagram} />
         </div>

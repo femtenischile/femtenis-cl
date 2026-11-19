@@ -22,7 +22,7 @@ export function SiteFooter({sitio}: {sitio: Sitio}) {
           </nav>
           <Link className="site-footer__logo" href="/">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-dark.svg" alt="femtenis.cl, ir al inicio" width={168} height={32} />
+            <img src="/logo-dark.png" alt="femtenis.cl, ir al inicio" width={180} height={32} />
           </Link>
           {sitio.instagram ? (
             <div style={{display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start'}}>
