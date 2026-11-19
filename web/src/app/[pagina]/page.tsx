@@ -146,10 +146,10 @@ export default async function PaginaPage({params}: Props) {
                     </div>
                     <div style={{display: 'flex', flexWrap: 'wrap', gap: 12}}>
                       {sitio.correoContacto ? (
-                        <a className="btn btn--accent btn--lg" href={`mailto:${sitio.correoContacto}`}>Escríbenos <Arrow /></a>
+                        <a className="btn btn--accent btn--lg" href={`mailto:${sitio.correoContacto}`} target="_blank" rel="noopener noreferrer">Escríbenos <Arrow /></a>
                       ) : null}
                       {sitio.instagram ? (
-                        <a className="btn btn--ghost-dark btn--lg" href={sitio.instagram}><InstagramIcon /> Instagram</a>
+                        <a className="btn btn--ghost-dark btn--lg" href={sitio.instagram} target="_blank" rel="noopener noreferrer"><InstagramIcon /> Instagram</a>
                       ) : null}
                     </div>
                   </div>

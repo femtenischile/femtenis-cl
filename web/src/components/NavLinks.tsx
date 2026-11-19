@@ -60,6 +60,8 @@ export function NavLinks({instagram}: {instagram?: string}) {
             <a
               className="icon-link nav-instagram"
               href={instagram}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Instagram de femtenis.cl"
               style={{display: 'inline-flex', alignItems: 'center', width: 'auto', height: 'auto', padding: '6px 0', borderBottom: '3px solid transparent'}}
             >

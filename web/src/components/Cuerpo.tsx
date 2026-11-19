@@ -9,7 +9,15 @@ const components: PortableTextComponents = {
     normal: ({children}) => <p>{children}</p>,
   },
   marks: {
-    link: ({value, children}) => <a href={value?.href}>{children}</a>,
+    link: ({value, children}) => {
+      // Enlaces a otros sitios o a correo se abren en otra pestaña; los internos, en la misma
+      const externo = /^(https?:|mailto:)/.test(value?.href ?? '') && !/^https?:\/\/(www\.)?femtenis\.cl/.test(value?.href ?? '')
+      return (
+        <a href={value?.href} {...(externo ? {target: '_blank', rel: 'noopener noreferrer'} : {})}>
+          {children}
+        </a>
+      )
+    },
   },
   types: {
     imagenConCredito: ({value}: {value: SanityImage}) => (

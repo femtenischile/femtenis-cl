@@ -15,7 +15,7 @@ export function SiteFooter({sitio}: {sitio: Sitio}) {
               </li>
               {sitio.correoContacto ? (
                 <li>
-                  <a href={`mailto:${sitio.correoContacto}`}>Correo electrónico</a>
+                  <a href={`mailto:${sitio.correoContacto}`} target="_blank" rel="noopener noreferrer">Correo electrónico</a>
                 </li>
               ) : null}
             </ul>
@@ -29,7 +29,7 @@ export function SiteFooter({sitio}: {sitio: Sitio}) {
               <p className="overline" style={{color: 'var(--lime-400)'}}>
                 Síguenos
               </p>
-              <a href={sitio.instagram} className="icon-link" aria-label="Instagram de femtenis.cl" style={{border: '1px solid var(--purple-800)', color: 'var(--snow-50)'}}>
+              <a href={sitio.instagram} target="_blank" rel="noopener noreferrer" className="icon-link" aria-label="Instagram de femtenis.cl" style={{border: '1px solid var(--purple-800)', color: 'var(--snow-50)'}}>
                 <InstagramIcon size={18} />
               </a>
             </div>

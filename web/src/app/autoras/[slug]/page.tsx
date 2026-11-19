@@ -33,7 +33,7 @@ export default async function AutoraPage({params}: Props) {
           <h1 className="display-lg">{autora.nombre}</h1>
           {autora.bio ? <p className="lead">{autora.bio}</p> : null}
           {autora.instagram ? (
-            <a className="link-arrow" href={autora.instagram}>
+            <a className="link-arrow" href={autora.instagram} target="_blank" rel="noopener noreferrer">
               Instagram de {autora.nombre} <span aria-hidden="true">→</span>
             </a>
           ) : null}

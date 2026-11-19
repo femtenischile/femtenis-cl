@@ -60,7 +60,7 @@ export default async function TorneoPage({params}: Props) {
           <div><dt>Ciudad</dt><dd>{t.ciudad}{t.pais ? `, ${PAIS_LABEL[t.pais] ?? t.pais}` : ''}</dd></div>
           <div><dt>Superficie</dt><dd>{t.superficie}</dd></div>
           <div><dt>Categoría</dt><dd>{t.categoria}</dd></div>
-          {t.webOficial ? <div><dt>Web oficial</dt><dd><a href={t.webOficial}>Sitio del torneo</a></dd></div> : null}
+          {t.webOficial ? <div><dt>Web oficial</dt><dd><a href={t.webOficial} target="_blank" rel="noopener noreferrer">Sitio del torneo</a></dd></div> : null}
         </dl>
       </header>
 
