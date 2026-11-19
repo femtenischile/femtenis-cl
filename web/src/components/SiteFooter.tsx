@@ -11,7 +11,7 @@ export function SiteFooter({sitio}: {sitio: Sitio}) {
           <nav aria-label="Sobre el sitio">
             <ul className="plain footer-links">
               <li>
-                <Link href="/sobre/">Sobre FemTenisChile</Link>
+                <Link href="/sobre/">Sobre Femtenis.cl</Link>
               </li>
               {sitio.correoContacto ? (
                 <li>

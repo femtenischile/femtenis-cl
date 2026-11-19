@@ -10,7 +10,7 @@ const LINKS = [
   {href: '/actualidad/', label: 'Actualidad'},
   {href: '/las-tenistas/', label: 'Las tenistas'},
   {href: '/el-circuito/', label: 'El circuito'},
-  {href: '/sobre/', label: 'Sobre FemTenisChile'},
+  {href: '/sobre/', label: 'Sobre Femtenis.cl'},
 ]
 
 export function NavLinks({instagram}: {instagram?: string}) {

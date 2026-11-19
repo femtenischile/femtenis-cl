@@ -15,7 +15,7 @@ export const pagina = defineType({
       description: 'Define la URL: sobre, privacidad, terminos',
       validation: (r) => r.required(),
     }),
-    defineField({name: 'antetitulo', title: 'Antetítulo', type: 'string', description: 'Texto pequeño sobre el h1. Ej.: Sobre FemTenisChile'}),
+    defineField({name: 'antetitulo', title: 'Antetítulo', type: 'string', description: 'Texto pequeño sobre el h1. Ej.: Sobre Femtenis.cl'}),
     defineField({name: 'bajada', title: 'Bajada', type: 'text', rows: 3}),
     defineField({
       name: 'plantilla',
