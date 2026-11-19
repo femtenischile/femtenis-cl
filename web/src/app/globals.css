@@ -371,3 +371,16 @@ ul.plain,ol.plain{list-style:none;padding:0}
   .stat__variacion{min-height:48px;margin-top:4px}
   .stat__variacion .delta{font-size:14px;padding:6px 12px}
 }
+
+/* Galería de fotos dentro de las notas: de a dos por fila (una en celular) */
+.galeria__grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.galeria__grid--impar li:first-child{grid-column:1 / -1}
+.galeria__grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4 / 3}
+.galeria__grid--impar li:first-child img{aspect-ratio:16 / 9}
+@media (max-width:600px){.galeria__grid{grid-template-columns:1fr}.galeria__grid img{aspect-ratio:auto}}
+
+/* Post de Instagram incrustado */
+.ig-post{display:flex;justify-content:center}
+.prose blockquote.instagram-media{background:var(--snow-50);color:var(--fg);border:1px solid var(--line);border-radius:var(--r-md);padding:24px;margin:0 auto!important;width:100%;max-width:540px!important;min-width:280px!important;font-size:15px;text-align:center}
+.prose blockquote.instagram-media::before{content:none}
+.ig-post iframe{margin:0 auto!important;border-radius:var(--r-md)!important}

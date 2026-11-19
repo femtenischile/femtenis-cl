@@ -1,5 +1,6 @@
 import {PortableText, type PortableTextComponents} from '@portabletext/react'
 import {Img} from './Img'
+import {InstagramPost} from './InstagramPost'
 import type {Bloque, SanityImage} from '@/sanity/types'
 
 const components: PortableTextComponents = {
@@ -32,6 +33,30 @@ const components: PortableTextComponents = {
         ) : null}
       </figure>
     ),
+    galeria: ({value}: {value: {imagenes?: SanityImage[]; pie?: string}}) => {
+      const fotos = (value.imagenes ?? []).filter((i) => i?.asset)
+      if (!fotos.length) return null
+      const creditos = [...new Set(fotos.map((f) => f.credito).filter(Boolean))].join(', ')
+      return (
+        <figure className="article-figure galeria">
+          <ul className={`plain galeria__grid${fotos.length % 2 ? ' galeria__grid--impar' : ''}`}>
+            {fotos.map((f, i) => (
+              <li key={i}>
+                <Img image={f} width={720} height={540} label="foto" sizes="(min-width: 768px) 360px, 100vw" />
+              </li>
+            ))}
+          </ul>
+          {value.pie || creditos ? (
+            <figcaption>
+              {value.pie}
+              {value.pie && creditos ? '. ' : ''}
+              {creditos}
+            </figcaption>
+          ) : null}
+        </figure>
+      )
+    },
+    instagram: ({value}: {value: {url?: string}}) => (value.url ? <InstagramPost url={value.url} /> : null),
     cita: ({value}: {value: {texto: string; autora?: string}}) => (
       <blockquote>
         <p>{value.texto}</p>

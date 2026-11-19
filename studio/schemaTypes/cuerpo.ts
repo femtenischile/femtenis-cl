@@ -32,7 +32,55 @@ export const cuerpo = defineType({
         ],
       },
     }),
-    defineArrayMember({type: 'imagenConCredito'}),
+    defineArrayMember({type: 'imagenConCredito', title: 'Foto'}),
+    defineArrayMember({
+      name: 'galeria',
+      title: 'Galería de fotos',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'imagenes',
+          title: 'Fotos',
+          description: 'Entre 2 y 6 fotos. En computador se muestran de a dos por fila.',
+          type: 'array',
+          of: [defineArrayMember({type: 'imagenConCredito'})],
+          options: {layout: 'grid'},
+          validation: (r) => r.required().min(2).max(6),
+        }),
+        defineField({name: 'pie', title: 'Pie de la galería (opcional)', type: 'string'}),
+      ],
+      preview: {
+        select: {imagenes: 'imagenes', pie: 'pie', media: 'imagenes.0'},
+        prepare: ({imagenes, pie, media}) => ({
+          title: `Galería · ${imagenes?.length ?? 0} fotos`,
+          subtitle: pie,
+          media,
+        }),
+      },
+    }),
+    defineArrayMember({
+      name: 'instagram',
+      title: 'Post de Instagram',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'url',
+          title: 'Enlace del post',
+          description: 'En Instagram: ⋯ del post → Copiar enlace. Sirve para posts y reels públicos.',
+          type: 'url',
+          validation: (r) =>
+            r.required().custom((url?: string) =>
+              !url || /^https:\/\/(www\.)?instagram\.com\/(p|reel|reels|tv)\/[A-Za-z0-9_-]+/.test(url)
+                ? true
+                : 'Pega el enlace de un post o reel, por ejemplo https://www.instagram.com/p/ABC123/',
+            ),
+        }),
+      ],
+      preview: {
+        select: {url: 'url'},
+        prepare: ({url}) => ({title: 'Post de Instagram', subtitle: url}),
+      },
+    }),
     defineArrayMember({
       name: 'cita',
       title: 'Cita destacada',
