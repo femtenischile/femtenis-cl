@@ -357,3 +357,7 @@ ul.plain,ol.plain{list-style:none;padding:0}
 /* Texto justificado en notas y páginas. Los guiones automáticos (en español, por lang="es-CL") evitan espacios grandes entre palabras en pantallas angostas */
 .prose p,.prose li{text-align:justify;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:7 3 3}
 .prose blockquote p{text-align:left;-webkit-hyphens:manual;hyphens:manual}
+
+/* Variación semanal de la N.º 1 (junto a puesto y puntos) */
+.stat__variacion{display:flex;align-items:center;min-height:48px;margin-top:8px}
+.stat__variacion .delta{font-size:16px;padding:8px 16px}

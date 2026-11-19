@@ -13,14 +13,10 @@ function Variacion({f}: {f: FilaRanking}) {
 export function RankingBox({filas}: {filas: FilaRanking[]}) {
   if (!filas.length) return <p className="empty">Aún no hay ranking cargado.</p>
   const [lider, ...resto] = filas
-  const iniciales = `${lider.nombre[0] ?? ''}${lider.apellido[0] ?? ''}`
   return (
     <div className="ranking-box">
       <article className="leader" aria-labelledby="lider">
         <div className="leader__who">
-          <div className="avatar" aria-hidden="true">
-            {iniciales}
-          </div>
           <div style={{display: 'flex', flexDirection: 'column', gap: 6, alignItems: 'flex-start'}}>
             <p className="badge badge--lime">N.º 1 de Chile</p>
             <h3 id="lider" className="display-sm" style={{fontSize: 36}}>
@@ -40,6 +36,12 @@ export function RankingBox({filas}: {filas: FilaRanking[]}) {
               <dd className="stat__value">{lider.puntos}</dd>
             </div>
           ) : null}
+          <div className="stat">
+            <dt className="overline on-dark-muted">Variación semanal</dt>
+            <dd className="stat__variacion">
+              <Variacion f={lider} />
+            </dd>
+          </div>
         </dl>
       </article>
       {resto.length ? (
