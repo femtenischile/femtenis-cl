@@ -138,7 +138,7 @@ export default async function Inicio() {
               Calendario completo <Arrow />
             </Link>
           </div>
-          <StackedTournaments partido={partido} torneos={torneos} />
+          <StackedTournaments partido={partido} torneos={torneos} manuales={portada.tarjetas} />
         </div>
       </section>
     </>

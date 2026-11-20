@@ -92,3 +92,17 @@ export type Pagina = {
   actualizadoEn?: string
   secciones?: Bloque[]
 }
+
+export type TarjetaManual = {
+  _key: string
+  etiqueta?: string
+  detalle?: string
+  fecha: string
+  hora?: string
+  izq?: string
+  notaIzq?: string
+  der?: string
+  notaDer?: string
+  mostrarVs?: boolean
+  torneo?: {nombre: string; slug: string; sede?: string; superficie?: string; categoria?: string} | null
+}

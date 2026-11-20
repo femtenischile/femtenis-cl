@@ -1,5 +1,5 @@
 import {fetchData} from './fetch'
-import type {Articulo, ArticuloTarjeta, FilaRanking, Pagina, Partido, Sitio, Torneo, SanityImage} from './types'
+import type {Articulo, ArticuloTarjeta, FilaRanking, Pagina, Partido, Sitio, Torneo, SanityImage, TarjetaManual} from './types'
 import {hoyISO, sumarDias} from '@/lib/fechas'
 
 // Las consultas se hacen una vez por build y se reutilizan entre páginas.
@@ -76,6 +76,7 @@ type PortadaRaw = {
   perfilDelMes: string | null
   carrusel: {_id: string; nombre: string; apellido: string; slug?: string; foto?: SanityImage}[] | null
   partido: Partido | null
+  tarjetas: TarjetaManual[] | null
 }
 
 export function getPortada(): Promise<PortadaRaw> {
@@ -85,10 +86,14 @@ export function getPortada(): Promise<PortadaRaw> {
         "destacado": articuloDestacado->_id,
         "perfilDelMes": perfilDelMes->_id,
         "carrusel": jugadorasCarrusel[]->{_id, nombre, apellido, "slug": slug.current, foto},
-        "partido": partidoDestacado->{${PARTIDO}}
+        "partido": partidoDestacado->{${PARTIDO}},
+        "tarjetas": tarjetasTorneos[defined(fecha)]{
+          _key, etiqueta, detalle, fecha, hora, izq, notaIzq, der, notaDer, mostrarVs,
+          "torneo": torneo->{nombre, "slug": slug.current, sede, superficie, categoria}
+        }
       }`,
     )
-    return p ?? {destacado: null, perfilDelMes: null, carrusel: null, partido: null}
+    return p ?? {destacado: null, perfilDelMes: null, carrusel: null, partido: null, tarjetas: null}
   })
 }
 

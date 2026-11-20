@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {dia, mesCorto, mesLargo, diaSemana} from '@/lib/fechas'
 import {nombreCompleto} from '@/lib/textos'
-import type {Partido, Torneo} from '@/sanity/types'
+import type {Partido, TarjetaManual, Torneo} from '@/sanity/types'
 
 /** TournamentItem: fecha en bloque + nombre, sede e inscritas. */
 export function TournamentItem({t, level = 3}: {t: Torneo; level?: 2 | 3}) {
@@ -51,12 +51,29 @@ type Tarjeta = {
   mes: string
   izq: {nombre: string; nota: string}
   der: {nombre: string; nota: string}
+  vs?: boolean
 }
 
 /** StackedTournaments: tarjetas que se apilan al hacer scroll (position: sticky). */
-export function StackedTournaments({partido, torneos}: {partido: Partido | null; torneos: Torneo[]}) {
+export function StackedTournaments({partido, torneos, manuales}: {partido: Partido | null; torneos: Torneo[]; manuales?: TarjetaManual[] | null}) {
   const cards: Tarjeta[] = []
-  if (partido?.torneo && partido.inicio) {
+  // Tarjetas armadas a mano en Portada: si hay, se usan solo esas
+  for (const m of manuales ?? []) {
+    cards.push({
+      id: `m-${m._key}`,
+      torneo: m.torneo?.nombre ?? '',
+      slug: m.torneo?.slug ?? '',
+      sede: [m.torneo?.sede, m.hora ? `${m.hora} h` : null].filter(Boolean).join(' · '),
+      detalle: m.detalle || m.torneo?.superficie || '',
+      etiqueta: m.etiqueta || m.torneo?.categoria || '',
+      fecha: m.fecha,
+      mes: m.hora ? `${diaSemana(m.fecha)} · ${mesCorto(m.fecha)}` : mesLargo(m.fecha),
+      izq: {nombre: m.izq ?? '', nota: m.notaIzq ?? ''},
+      der: {nombre: m.der ?? '', nota: m.notaDer ?? ''},
+      vs: m.mostrarVs !== false && Boolean(m.izq && m.der),
+    })
+  }
+  if (!cards.length && partido?.torneo && partido.inicio) {
     cards.push({
       id: `t-${partido._id}`,
       torneo: partido.torneo.nombre,
@@ -70,9 +87,10 @@ export function StackedTournaments({partido, torneos}: {partido: Partido | null;
       der: partido.b
         ? {nombre: nombreCompleto(partido.b), nota: [partido.b.nacionalidad, partido.rankingB && `#${partido.rankingB}`].filter(Boolean).join(' · ')}
         : {nombre: 'Rival por confirmar', nota: ''},
+      vs: true,
     })
   }
-  for (const t of torneos) {
+  for (const t of manuales?.length ? [] : torneos) {
     if (cards.length >= 5) break
     const ins = t.inscritas ?? []
     const extra = ins.length > 2 ? ` y ${ins.length - 2} más` : ''
@@ -99,7 +117,7 @@ export function StackedTournaments({partido, torneos}: {partido: Partido | null;
             <div className="stack-card__foot">
               <p>{c.sede}</p>
               <h3 id={c.id} className="stack-card__title">
-                <Link href={`/el-circuito/torneos/${c.slug}/`}>{c.torneo}</Link>
+                {c.slug ? <Link href={`/el-circuito/torneos/${c.slug}/`}>{c.torneo}</Link> : c.torneo}
               </h3>
             </div>
             <div className="stack-card__head">
@@ -113,10 +131,13 @@ export function StackedTournaments({partido, torneos}: {partido: Partido | null;
                 <span className="stack-card__name">{c.izq.nombre}</span>
                 <span className="stack-card__note">{c.izq.nota}</span>
               </p>
-              <time className="stack-card__date" dateTime={c.fecha}>
-                <span className="stack-card__month">{c.mes}</span>
-                <span className="stack-card__day">{dia(c.fecha)}</span>
-              </time>
+              <div className="stack-card__centro">
+                {c.vs ? <span className="stack-card__vs">vs.</span> : null}
+                <time className="stack-card__date" dateTime={c.fecha}>
+                  <span className="stack-card__month">{c.mes}</span>
+                  <span className="stack-card__day">{dia(c.fecha)}</span>
+                </time>
+              </div>
               <p className="stack-card__side">
                 <span className="stack-card__name">{c.der.nombre}</span>
                 <span className="stack-card__note">{c.der.nota}</span>
