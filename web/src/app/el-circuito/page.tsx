@@ -44,7 +44,6 @@ export default async function Circuito() {
         <div className="container stack">
           <div className="section-head">
             <h2 id="h-cancha" className="display-md section-title">{semana.titulo}</h2>
-            <p className="small muted">Rondas, superficies y horarios · Hora de Chile</p>
           </div>
           {semana.partidos.length ? (
             <ul className="plain grid-2">
