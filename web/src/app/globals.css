@@ -388,3 +388,10 @@ ul.plain,ol.plain{list-style:none;padding:0}
 /* "vs." sobre la fecha en las tarjetas de Próximos torneos */
 .stack-card__centro{display:flex;flex-direction:column;align-items:center;gap:6px}
 .stack-card__vs{font-family:var(--font-display);font-size:28px;line-height:1;text-transform:lowercase;color:var(--stack-day)}
+
+/* Carrusel WTA: la foto ocupa un cuadrado completo, del ancho de la tarjeta */
+.player__media{height:auto;aspect-ratio:1 / 1;overflow:hidden}
+.player__media img.ph-player{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.player__media .ph.ph-player{position:absolute;inset:0;width:100%;height:100%;border-radius:0}
+.player__media::after{content:"";position:absolute;inset:0 0 auto 0;height:45%;background:linear-gradient(rgba(30,7,61,.55),transparent);pointer-events:none}
+.player__rank{z-index:1}

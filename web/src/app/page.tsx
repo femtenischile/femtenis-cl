@@ -112,7 +112,7 @@ export default async function Inicio() {
                     </div>
                     <div className="player__media" aria-hidden="true">
                       {j.fila ? <span className="player__rank">{j.fila.puesto}</span> : null}
-                      <Img image={j.foto} width={320} height={392} label="foto" decorative className="ph-player" />
+                      <Img image={j.foto} width={480} height={480} label="foto" decorative className="ph-player" sizes="(min-width: 1024px) 280px, (min-width: 600px) 50vw, 80vw" />
                     </div>
                   </article>
                 </li>
